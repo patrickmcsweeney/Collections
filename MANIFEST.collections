@@ -1,0 +1,12 @@
+cfg/cfg.d/x_collection.pl
+cfg/cfg.d/collection_render.pl
+cfg/citations/eprint/collection_select.xml
+cfg/citations/eprint/collection_item.xml
+cfg/lang/en/phrases/collection.xml
+cfg/plugins/EPrints/Plugin/Screen/NewCollection.pm
+cfg/plugins/EPrints/Plugin/Collection.pm
+cfg/plugins/EPrints/Plugin/InputForm/Component/Field/CollectionSelect.pm
+cfg/static/javascript/auto/collectionselect.js
+cgi/users/collectionselect/add
+cgi/users/collectionselect/remove
+MANIFEST.collections

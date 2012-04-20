@@ -1,0 +1,60 @@
+#!/usr/bin/perl
+use EPrints;
+use strict;
+
+my $ep = EPrints->new();
+my $repo = $ep->current_repository;
+return unless( defined $repo );
+
+my $params_defined = 1;
+
+my $collection_eprintid = $repo->param( 'collection_eprintid' );
+$params_defined &&= defined $collection_eprintid;
+
+my $eprintid = $repo->param( 'eprinttoadd' );
+$params_defined &&= ( defined $eprintid && $eprintid =~ /^\d+$/ );
+
+my $fieldname = $repo->param( 'fieldname' );
+$params_defined &&= defined $fieldname;
+
+my $user = $repo->current_user;
+$params_defined &&= defined $user;
+
+unless( $params_defined )
+{
+	return;
+}
+
+my $collection = EPrints::DataObj::EPrint->new( $repo, $collection_eprintid );
+unless( defined $collection )
+{
+	return;
+}
+# can user edit?
+unless( $collection->can_be_edited( $user ) )
+{
+	return;
+}
+
+if( $collection->get_type ne 'collection' )
+{
+	return;
+}
+
+if( $action eq "add" )
+{
+	$collection->add_to_collection( $eprintid );
+}
+
+if( $action eq "remove" ) 
+{
+	$collection->remove_from_collection( $eprintid );
+}
+
+my $blacklist = $collection->get_blacklist( $fieldname );
+my $div = EPrints::Plugin::InputForm::Component::Field::CollectionSelect::_render_selected_eprints( $repo, $collection, $fieldname, $blacklist );
+print STDOUT $div->toString if( defined $div );
+
+return;
+
+
