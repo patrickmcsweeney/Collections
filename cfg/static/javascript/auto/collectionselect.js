@@ -18,7 +18,7 @@ function checkboxClick(e){
 
 		var current_time = new Date().getTime();
 		var eprinttoadd = this.name.replace(/_add_/,"");
-		var url = rel_path+"/cgi/users/collectionselect/add?collection_eprintid="+$("collection_eprintid").value + "&eprinttoadd=" + eprinttoadd + "&fieldname=" + $("fieldname").value + "&time=" + current_time;
+		var url = rel_path+"/cgi/users/collection_select?action=add&collection_eprintid="+$("collection_eprintid").value + "&eprinttoadd=" + eprinttoadd + "&fieldname=" + $("fieldname").value + "&time=" + current_time;
 	
 		new Ajax.Request(url, {
 			method: 'get',
@@ -34,7 +34,7 @@ function checkboxClick(e){
 		
 		var current_time = new Date().getTime();
 		var eprinttoadd = this.name.replace(/_add_/,"");
-		var url = rel_path+"/cgi/users/collectionselect/remove?collection_eprintid="+$("collection_eprintid").value + "&eprinttorem=" + eprinttoadd + "&fieldname=" + $("fieldname").value + "&time=" + current_time;
+		var url = rel_path+"/cgi/users/collection_select?action=remove&collection_eprintid="+$("collection_eprintid").value + "&eprinttorem=" + eprinttoadd + "&fieldname=" + $("fieldname").value + "&time=" + current_time;
 	
 		new Ajax.Request(url, {
 			method: 'get',

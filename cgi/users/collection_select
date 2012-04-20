@@ -17,6 +17,9 @@ $params_defined &&= ( defined $eprintid && $eprintid =~ /^\d+$/ );
 my $fieldname = $repo->param( 'fieldname' );
 $params_defined &&= defined $fieldname;
 
+my $action = $repo->param( 'action' );
+$params_defined &&= defined $action;
+
 my $user = $repo->current_user;
 $params_defined &&= defined $user;
 
@@ -25,7 +28,7 @@ unless( $params_defined )
 	return;
 }
 
-my $collection = EPrints::DataObj::EPrint->new( $repo, $collection_eprintid );
+my $collection = $repo->eprint( $collection_eprintid );
 unless( defined $collection )
 {
 	return;
