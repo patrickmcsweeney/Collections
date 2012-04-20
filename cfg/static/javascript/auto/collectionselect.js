@@ -1,4 +1,4 @@
-function tabclick(e){ 
+/*function tabclick(e){ 
 
 	if(this.hasClassName("selected")){ return; }
 	$$("ul.ep_cs_tab_bar li").each(function(el){ el.removeClassName("selected");  });
@@ -6,7 +6,7 @@ function tabclick(e){
 
 	$$("div.ep_cs_tab_panel").each(function(el){ el.hide();  });
 	$(this.id+"_content").show();
-}
+}*/
 
 document.observe("dom:loaded", function() {
 	$$("input.ep_cs_checkbox").each(function(el){el.observe("click", checkboxClick );});
