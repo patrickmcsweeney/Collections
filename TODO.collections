@@ -2,4 +2,6 @@ get_parent_collections could be done a lot better.
 
 do we need the is collection method? do we actually want the EPrints::DataObj::EPrint methods to check is_collection? they are only convinence methods anyway. Maybe people want to be able to turn existing objects into collections? scarey but i think it should be enforced at the interface level not the dataobj.
 
+How render works is a bit scary
 
+collection select tabs could have their own render methods? and the array should definately be in x_collections.pl
