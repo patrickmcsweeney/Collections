@@ -255,6 +255,7 @@ sub belongs
 	foreach my $relation_hash ( @$r )
 	{
 		if( $relation_hash->{uri} == $targetid )
+		{
 			return 1;
 		}
 	}
@@ -280,19 +281,19 @@ sub add_to_collection
 {
 	my( $self, $targetid ) = @_;
 	
-	my $session = $self->{session};
+	my $repo = $self->{session};
 
 	return 0 unless( $self->is_collection );
 
 	return 0 if( $self->belongs( $targetid ) );
 
-	my $eprint = EPrints::DataObj::EPrint->new( $session, $targetid );
-	if( defined $eprint )
+	my $eprint = $repo->eprint( $targetid );
+	if( !defined $eprint )
 	{
 		return 0; 
 	}
 
-	if( $eprint->get_type eq 'collection' )
+	if( $eprint->value("type") eq 'collection' )
 	{
 		return 0;
 	}
