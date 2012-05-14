@@ -8,6 +8,7 @@ $c->{plugins}->{"InputForm::Component::Field::CollectionSelect"}->{params}->{dis
 $c->{plugins}->{"Screen::NewCollection"}->{params}->{disable} = 0;
 $c->{plugins}->{"Screen::EPrint::CollectionEdit"}->{params}->{disable} = 0;
 $c->{plugin_alias_map}->{"Screen::EPrint::Edit"} = "Screen::EPrint::CollectionEdit";
+$c->{plugin_alias_map}->{"Screen::EPrint::CollectionEdit"} = undef;
 
 
 $c->{z_collection_validate_eprint} = $c->{validate_eprint};
@@ -52,7 +53,7 @@ $c->{session_init} = sub {
         push @{$repository->{types}->{eprint}}, "collection";
 
         $repository->call("collection_session_init");
-}
+};
 
 $c->{collection_eprint_render} = $c->{eprint_render};
 
